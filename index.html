@@ -217,7 +217,7 @@
             box-shadow: 0 6px 20px rgba(201, 169, 110, 0.4);
         }
 
-        /* Menu Section */
+        /* Interactive Menu Section */
         .menu-section {
             padding: 100px 0;
             background-color: var(--secondary);
@@ -255,124 +255,167 @@
             font-size: 18px;
         }
 
-        .menu-category {
-            margin-bottom: 80px;
-        }
-
-        .category-title {
-            font-size: 32px;
-            color: var(--primary);
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .category-title::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 2px;
-            background-color: var(--primary);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .subcategory-title {
-            font-size: 24px;
-            color: var(--gold-light);
-            margin: 40px 0 20px;
-            padding-left: 15px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .menu-grid {
+        .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 50px;
         }
 
-        .menu-item {
+        .category-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: all 0.4s;
             border: 1px solid rgba(201, 169, 110, 0.1);
-            display: flex;
-            flex-direction: column;
+            cursor: pointer;
+            position: relative;
         }
 
-        .menu-item:hover {
+        .category-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             border-color: rgba(201, 169, 110, 0.3);
         }
 
-        .menu-item-image {
-            height: 220px;
+        .category-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(201, 169, 110, 0.2);
+        }
+
+        .category-image {
+            height: 200px;
             overflow: hidden;
         }
 
-        .menu-item-image img {
+        .category-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
 
-        .menu-item:hover .menu-item-image img {
+        .category-card:hover .category-image img {
             transform: scale(1.05);
         }
 
-        .menu-item-content {
+        .category-content {
             padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            text-align: center;
         }
 
-        .menu-item-content h3 {
-            font-size: 22px;
+        .category-content h3 {
+            font-size: 26px;
+            color: var(--primary);
             margin-bottom: 10px;
-            color: var(--primary);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .menu-item-content p {
+        .category-content p {
             color: var(--light-text);
-            margin-bottom: 15px;
-            flex-grow: 1;
+            font-size: 16px;
         }
 
-        .price {
+        .items-container {
+            display: none;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(201, 169, 110, 0.1);
+        }
+
+        .items-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .subcategory {
+            margin-bottom: 40px;
+        }
+
+        .subcategory-title {
+            font-size: 28px;
+            color: var(--gold-light);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(201, 169, 110, 0.3);
+            position: relative;
+        }
+
+        .subcategory-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: -2px;
+            left: 0;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .menu-item:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-color: rgba(201, 169, 110, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .item-name {
+            font-size: 22px;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .item-price {
             font-size: 20px;
-            font-weight: 700;
             color: var(--primary);
-            margin-top: auto;
+            font-weight: 700;
         }
 
-        .price::before {
+        .item-price::before {
             content: '₹';
             font-size: 18px;
             margin-right: 2px;
         }
 
+        .item-description {
+            color: var(--light-text);
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
         .item-tags {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .tag {
             background-color: rgba(201, 169, 110, 0.2);
             color: var(--gold-light);
-            padding: 5px 10px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
         }
 
@@ -587,7 +630,11 @@
                 font-size: 28px;
             }
             
-            .menu-grid {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .items-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -613,8 +660,12 @@
                 font-size: 32px;
             }
             
-            .category-title {
-                font-size: 28px;
+            .items-container {
+                padding: 20px;
+            }
+            
+            .item-name {
+                font-size: 20px;
             }
         }
     </style>
@@ -651,276 +702,219 @@
         </div>
     </section>
 
-    <!-- Menu Section -->
+    <!-- Interactive Menu Section -->
     <section class="menu-section" id="menu">
         <div class="container">
             <div class="section-title">
                 <h2>Our Exquisite Menu</h2>
-                <p>Carefully crafted dishes made with premium ingredients and passion</p>
+                <p>Click on any category to explore our delicious offerings</p>
             </div>
 
-            <!-- Sandwich Category -->
-            <div class="menu-category">
-                <h3 class="category-title">Sandwiches</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Veg Sandwich">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Veg Sandwich</h3>
-                            <p>Fresh vegetables with our special sauce</p>
-                            <div class="price">60</div>
-                        </div>
+            <!-- Category Cards -->
+            <div class="category-grid">
+                <!-- Sandwich Category -->
+                <div class="category-card" data-category="sandwich">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Sandwiches">
                     </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1539252554453-80ab65ce3586?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80" alt="Veg Cheese Loaded Sandwich">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Veg Cheese Loaded Sandwich</h3>
-                            <p>Loaded with fresh vegetables and melted cheese</p>
-                            <div class="price">75</div>
-                            <div class="item-tags">
-                                <span class="tag">Cheesy</span>
-                            </div>
-                        </div>
+                    <div class="category-content">
+                        <h3>Sandwiches</h3>
+                        <p>10 delicious varieties</p>
                     </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1552902838-4d8335b2d5f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1760&q=80" alt="Tomato Cucumber Sandwich">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Tomato Cucumber Sandwich</h3>
-                            <p>Fresh tomato and cucumber with herbs</p>
-                            <div class="price">60</div>
-                        </div>
+                </div>
+
+                <!-- Pizza Category -->
+                <div class="category-card" data-category="pizza">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Pizzas">
                     </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1514&q=80" alt="Chocolate Sandwich">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Chocolate Sandwich</h3>
-                            <p>Sweet chocolate filling between bread slices</p>
-                            <div class="price">100</div>
-                            <div class="item-tags">
-                                <span class="tag">Sweet</span>
-                            </div>
-                        </div>
+                    <div class="category-content">
+                        <h3>Pizzas</h3>
+                        <p>9 mouth-watering options</p>
+                    </div>
+                </div>
+
+                <!-- Pasta Category -->
+                <div class="category-card" data-category="pasta">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Pasta">
+                    </div>
+                    <div class="category-content">
+                        <h3>Pasta</h3>
+                        <p>4 Italian specialties</p>
+                    </div>
+                </div>
+
+                <!-- Maggie Category -->
+                <div class="category-card" data-category="maggie">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Maggie">
+                    </div>
+                    <div class="category-content">
+                        <h3>Maggie</h3>
+                        <p>6 comforting varieties</p>
+                    </div>
+                </div>
+
+                <!-- Starters Category -->
+                <div class="category-card" data-category="starters">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80" alt="Starters">
+                    </div>
+                    <div class="category-content">
+                        <h3>Starters</h3>
+                        <p>Perfect appetizers</p>
+                    </div>
+                </div>
+
+                <!-- Special Buns & Breads -->
+                <div class="category-card" data-category="breads">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Special Buns & Breads">
+                    </div>
+                    <div class="category-content">
+                        <h3>Special Buns & Breads</h3>
+                        <p>Freshly baked delights</p>
+                    </div>
+                </div>
+
+                <!-- Egg Specials -->
+                <div class="category-card" data-category="egg">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1760&q=80" alt="Egg Specials">
+                    </div>
+                    <div class="category-content">
+                        <h3>Egg Specials</h3>
+                        <p>Protein-packed options</p>
+                    </div>
+                </div>
+
+                <!-- Falooda -->
+                <div class="category-card" data-category="falooda">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Falooda">
+                    </div>
+                    <div class="category-content">
+                        <h3>Falooda</h3>
+                        <p>Traditional desserts</p>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="category-card" data-category="desserts">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Desserts">
+                    </div>
+                    <div class="category-content">
+                        <h3>Desserts</h3>
+                        <p>Sweet indulgences</p>
+                    </div>
+                </div>
+
+                <!-- Fried Momos -->
+                <div class="category-card" data-category="momos">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1589647363585-f4a7d3877b10?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Fried Momos">
+                    </div>
+                    <div class="category-content">
+                        <h3>Fried Momos</h3>
+                        <p>Asian delicacies</p>
+                    </div>
+                </div>
+
+                <!-- Nachos -->
+                <div class="category-card" data-category="nachos">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Nachos">
+                    </div>
+                    <div class="category-content">
+                        <h3>Nachos</h3>
+                        <p>Mexican favorites</p>
+                    </div>
+                </div>
+
+                <!-- Smoothies -->
+                <div class="category-card" data-category="smoothies">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1572&q=80" alt="Smoothies">
+                    </div>
+                    <div class="category-content">
+                        <h3>Smoothies</h3>
+                        <p>Fresh fruit blends</p>
+                    </div>
+                </div>
+
+                <!-- Burger -->
+                <div class="category-card" data-category="burger">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1698&q=80" alt="Burgers">
+                    </div>
+                    <div class="category-content">
+                        <h3>Burgers</h3>
+                        <p>6 juicy options</p>
+                    </div>
+                </div>
+
+                <!-- Milkshakes -->
+                <div class="category-card" data-category="milkshakes">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Milkshakes">
+                    </div>
+                    <div class="category-content">
+                        <h3>Milkshakes</h3>
+                        <p>10 creamy varieties</p>
+                    </div>
+                </div>
+
+                <!-- Fruit Bowls -->
+                <div class="category-card" data-category="fruitbowls">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1519996409144-56c88c9aa612?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Fruit Bowls">
+                    </div>
+                    <div class="category-content">
+                        <h3>Fruit Bowls</h3>
+                        <p>Fresh & healthy</p>
+                    </div>
+                </div>
+
+                <!-- Mojitoes -->
+                <div class="category-card" data-category="mojitoes">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1701&q=80" alt="Mojitoes">
+                    </div>
+                    <div class="category-content">
+                        <h3>Mojitoes</h3>
+                        <p>10 refreshing options</p>
+                    </div>
+                </div>
+
+                <!-- Ice Cream -->
+                <div class="category-card" data-category="icecream">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Ice Cream">
+                    </div>
+                    <div class="category-content">
+                        <h3>Ice Cream</h3>
+                        <p>9 delicious scoops</p>
+                    </div>
+                </div>
+
+                <!-- Cold Drinks -->
+                <div class="category-card" data-category="colddrinks">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Cold Drinks">
+                    </div>
+                    <div class="category-content">
+                        <h3>Cold Drinks</h3>
+                        <p>10 chilled beverages</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Pizza Category -->
-            <div class="menu-category">
-                <h3 class="category-title">Pizzas</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Cheese Pizza">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Cheese Pizza</h3>
-                            <p>Classic pizza with mozzarella cheese</p>
-                            <div class="price">140</div>
-                            <div class="item-tags">
-                                <span class="tag">Cheesy</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1595708684082-a173bb3a06c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80" alt="Mexican Green Wave Pizza">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Mexican Green Wave Pizza</h3>
-                            <p>Spicy Mexican flavors with green peppers</p>
-                            <div class="price">150</div>
-                            <div class="item-tags">
-                                <span class="tag">Spicy</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Paneer Pizza">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Paneer Pizza</h3>
-                            <p>Delicious pizza topped with paneer cubes</p>
-                            <div class="price">160</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80" alt="Veg Deluxe Pizza">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Veg Deluxe Pizza</h3>
-                            <p>Loaded with all premium vegetables</p>
-                            <div class="price">180</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Items Container (Initially Hidden) -->
+            <div class="items-container" id="items-container">
+                <!-- Content will be populated by JavaScript -->
             </div>
-
-            <!-- Pasta Category -->
-            <div class="menu-category">
-                <h3 class="category-title">Pasta</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="White Sauce Pasta">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>White Sauce Pasta</h3>
-                            <p>Creamy white sauce with perfectly cooked pasta</p>
-                            <div class="price">120</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1752&q=80" alt="Red Sauce Pasta">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Red Sauce Pasta</h3>
-                            <p>Tangy tomato sauce with garlic and basil</p>
-                            <div class="price">110</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Mushroom Penne Pasta">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Mushroom Penne Pasta</h3>
-                            <p>Penne pasta with sautéed mushrooms</p>
-                            <div class="price">130</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Cafe Special Pasta">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Cafe Special Pasta</h3>
-                            <p>Our signature pasta with secret blend of herbs</p>
-                            <div class="price">150</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Maggie Category -->
-            <div class="menu-category">
-                <h3 class="category-title">Maggie</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Plain Maggie">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Plain Maggie</h3>
-                            <p>Classic maggie noodles with special seasoning</p>
-                            <div class="price">40</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Vegetable Maggie">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Vegetable Maggie</h3>
-                            <p>Maggie loaded with fresh seasonal vegetables</p>
-                            <div class="price">50</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Hot Spicy Chilli Maggie">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Hot Spicy Chilli Maggie</h3>
-                            <p>For those who love extra heat with green chillies</p>
-                            <div class="price">60</div>
-                            <div class="item-tags">
-                                <span class="tag">Spicy</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Veg Cheese Maggie">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Veg Cheese Maggie</h3>
-                            <p>Creamy maggie with melted cheese and vegetables</p>
-                            <div class="price">70</div>
-                            <div class="item-tags">
-                                <span class="tag">Cheesy</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Starters Category -->
-            <div class="menu-category">
-                <h3 class="category-title">Starters</h3>
-                <div class="menu-grid">
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80" alt="French Fries Regular">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>French Fries Regular</h3>
-                            <p>Crispy golden fries with a pinch of salt</p>
-                            <div class="price">80</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Peri Peri Fries">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Peri Peri Fries</h3>
-                            <p>Fries tossed in our signature peri peri seasoning</p>
-                            <div class="price">100</div>
-                            <div class="item-tags">
-                                <span class="tag">Spicy</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1742&q=80" alt="Tandoori Fries">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Tandoori Fries</h3>
-                            <p>Fries with tandoori masala and herbs</p>
-                            <div class="price">110</div>
-                        </div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="menu-item-image">
-                            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Cheese Loaded Fries">
-                        </div>
-                        <div class="menu-item-content">
-                            <h3>Cheese Loaded Fries</h3>
-                            <p>Fries topped with melted cheese and herbs</p>
-                            <div class="price">130</div>
-                            <div class="item-tags">
-                                <span class="tag">Cheesy</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Continue with other categories similarly -->
-            <!-- For brevity, I'll show a few categories and you can add the rest following the same pattern -->
-
         </div>
     </section>
 
@@ -1000,6 +994,222 @@
     </div>
 
     <script>
+        // Menu Data - All items from your files
+        const menuData = {
+            sandwich: {
+                title: "Sandwiches",
+                items: [
+                    { name: "Veg Sandwich", price: 60 },
+                    { name: "Veg Cheese Loaded Sandwich", price: 75 },
+                    { name: "Tomato Cucumber Sandwich", price: 60 },
+                    { name: "Chocolate Sandwich", price: 100 },
+                    { name: "Corn Cheese Sandwich", price: 90 },
+                    { name: "Paneer Sandwich", price: 95 },
+                    { name: "Mushroom Sandwich", price: 85 },
+                    { name: "Chilli Cheese Sandwich", price: 80 },
+                    { name: "Garlic Sandwich", price: 90 },
+                    { name: "Cafe Special Sandwich", price: 120 }
+                ]
+            },
+            pizza: {
+                title: "Pizzas",
+                items: [
+                    { name: "Cheese Pizza", price: 140 },
+                    { name: "Mexican Green Wave", price: 150 },
+                    { name: "Cheese N Corn Pizza", price: 150 },
+                    { name: "Paneer Pizza", price: 160 },
+                    { name: "Mushroom Pizza", price: 160 },
+                    { name: "Veg Paradise Pizza", price: 170 },
+                    { name: "Veg Deluxe Pizza", price: 180 },
+                    { name: "Indi Tandoori Paneer Pizza", price: 180 },
+                    { name: "Hot Spicy Cheese Pizza", price: 150 }
+                ]
+            },
+            pasta: {
+                title: "Pasta",
+                items: [
+                    { name: "White Sauce Pasta", price: 120 },
+                    { name: "Red Sauce Pasta", price: 110 },
+                    { name: "Mushroom Penne Pasta", price: 130 },
+                    { name: "Cafe Special Pasta", price: 150 }
+                ]
+            },
+            maggie: {
+                title: "Maggie",
+                items: [
+                    { name: "Plain Maggie", price: 40 },
+                    { name: "Vegetable Maggie", price: 50 },
+                    { name: "Hot Spicy Chilli Maggie", price: 60 },
+                    { name: "Veg Cheese Maggie", price: 70 },
+                    { name: "Chilli Cheese Maggie", price: 80 },
+                    { name: "Spicy Paneer Chilli Maggie", price: 90 }
+                ]
+            },
+            starters: {
+                title: "Starters",
+                items: [
+                    { name: "French Fries Regular", price: 80 },
+                    { name: "Peri Peri Fries", price: 100 },
+                    { name: "Tandoori Fries", price: 110 },
+                    { name: "Sizwan Fries", price: 120 },
+                    { name: "Cheese Loaded Fries", price: 130 },
+                    { name: "Nuggets (6 pcs)", price: 140 },
+                    { name: "Smilies (6 pcs)", price: 120 },
+                    { name: "Cheese Shorts (6 pcs)", price: 130 },
+                    { name: "Veg Lolipop/Sticks (5 pcs)", price: 110 }
+                ]
+            },
+            breads: {
+                title: "Special Buns & Breads",
+                items: [
+                    { name: "Spicy Bun", price: 40 },
+                    { name: "Spicy Cheese Bun", price: 70 },
+                    { name: "Cheese Corn Garlic Bread", price: 120 },
+                    { name: "Paneer Cheese Garlic Bread", price: 130 },
+                    { name: "Peanut Bread", price: 60 }
+                ]
+            },
+            egg: {
+                title: "Egg Specials",
+                items: [
+                    { name: "Egg Sandwich", price: "60/75" },
+                    { name: "Egg Pizza", price: 160 },
+                    { name: "Bread Omelet", price: 50 },
+                    { name: "Cheese Bread Omelet", price: 70 },
+                    { name: "Boiled Egg Fry", price: 80 },
+                    { name: "Boiled Egg Toast", price: 80 },
+                    { name: "Egg Maggie", price: "60/70" },
+                    { name: "Egg Omelet", price: 40 }
+                ]
+            },
+            falooda: {
+                title: "Falooda",
+                items: [
+                    { name: "Royal Falooda", price: 120 },
+                    { name: "Pista Dryfruit Falooda", price: 120 },
+                    { name: "Gadbad", price: 90 }
+                ]
+            },
+            desserts: {
+                title: "Desserts",
+                items: [
+                    { name: "Nutella Choco Brownie", price: 120 },
+                    { name: "Choco Cup Vanilla", price: 100 },
+                    { name: "Sizzling Choco Brownie", price: 140 },
+                    { name: "Sizzling Vanilla Brownie", price: 130 },
+                    { name: "Nutella Brownie Sizzler", price: 150 }
+                ]
+            },
+            momos: {
+                title: "Fried Momos",
+                items: [
+                    { name: "Veg Momos", price: 100 },
+                    { name: "Paneer Momos", price: 120 },
+                    { name: "Corn Cheese Momos", price: 130 },
+                    { name: "Mushroom Momos", price: 130 }
+                ]
+            },
+            nachos: {
+                title: "Nachos",
+                items: [
+                    { name: "Cheese Nachos", price: 120 },
+                    { name: "Nachos Paradise", price: 150 },
+                    { name: "Nachos Deluxe", price: 180 }
+                ]
+            },
+            smoothies: {
+                title: "Smoothies",
+                items: [
+                    { name: "Chocolate Banana", price: 120 },
+                    { name: "Dry Fruit Banana", price: 140 },
+                    { name: "Apple Banana Smoothie", price: 130 },
+                    { name: "Water Melon Smoothie", price: 110 },
+                    { name: "Mango Banana", price: 120 },
+                    { name: "Choco Vanilla Smoothie", price: 130 }
+                ]
+            },
+            burger: {
+                title: "Burgers",
+                items: [
+                    { name: "Classic Veg Burger", price: 80 },
+                    { name: "Aloo Tikki Burger", price: 70 },
+                    { name: "Veg Cheese Burger", price: 100 },
+                    { name: "Double Patty Cheese Burger", price: 140 },
+                    { name: "Cheese Nuggets Burger", price: 120 },
+                    { name: "Cheese Fries Burger", price: 130 }
+                ]
+            },
+            milkshakes: {
+                title: "Milkshakes",
+                items: [
+                    { name: "Oreo Milkshake", price: 120 },
+                    { name: "Chocolate Milkshake", price: 110 },
+                    { name: "Kitkat Milkshake", price: 130 },
+                    { name: "Dry Fruit Milkshake", price: 150 },
+                    { name: "Oats Banana Milkshake", price: 130 },
+                    { name: "Black Lady Milkshake", price: 140 },
+                    { name: "Munch Milkshake", price: 120 },
+                    { name: "Boost Milkshake", price: 110 },
+                    { name: "Belgium Chocolate", price: 150 },
+                    { name: "Pista Milkshake", price: 130 },
+                    { name: "Apple Milkshake", price: 120 }
+                ]
+            },
+            fruitbowls: {
+                title: "Fruit Bowls",
+                items: [
+                    { name: "Fruit Bowl", price: 40 },
+                    { name: "Fruit Bowl with Ice Cream", price: 70 },
+                    { name: "Jamoon With Ice Cream", price: 80 },
+                    { name: "Thriveni", price: 90 }
+                ]
+            },
+            mojitoes: {
+                title: "Mojitoes",
+                items: [
+                    { name: "Strawberry Fizz", price: 60 },
+                    { name: "Blue Lagoon", price: 60 },
+                    { name: "Virgin Mint", price: 60 },
+                    { name: "Water Melon Fizz", price: 70 },
+                    { name: "Blueberry Vibe", price: 70 },
+                    { name: "Black Current Fizz", price: 70 },
+                    { name: "Passion Fruit Mojito", price: 70 },
+                    { name: "Green Ocean", price: 70 },
+                    { name: "Blue Froozy", price: 70 },
+                    { name: "Peach Ferrari", price: 70 }
+                ]
+            },
+            icecream: {
+                title: "Ice Cream Scoops",
+                items: [
+                    { name: "Vanilla", price: 40 },
+                    { name: "Chocolate", price: 50 },
+                    { name: "Butter Scotch", price: 50 },
+                    { name: "Pista", price: 50 },
+                    { name: "Black Current", price: 50 },
+                    { name: "Strawberry", price: 40 },
+                    { name: "Mango", price: 40 },
+                    { name: "Mixed Scoop (3)", price: 80 },
+                    { name: "Choco Vanilla", price: 70 }
+                ]
+            },
+            colddrinks: {
+                title: "Cold Based Drinks",
+                items: [
+                    { name: "Lime Ice Tea", price: 50 },
+                    { name: "Ginger Lime Ice Tea", price: 50 },
+                    { name: "Peach Ice Tea", price: 50 },
+                    { name: "Cold Coffee", price: 50 },
+                    { name: "Rose Milk", price: 60 },
+                    { name: "Cold Badam Milk", price: 70 },
+                    { name: "Iced American", price: 50 },
+                    { name: "Lime Soda", price: 30 },
+                    { name: "Lime Juice", price: 30 },
+                    { name: "Chilli Lime Soda", price: 40 }
+                ]
+            }
+        };
+
         // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
@@ -1034,7 +1244,59 @@
             });
         });
 
-        // Add subtle animation to menu items on scroll
+        // Category Card Click Handler
+        const categoryCards = document.querySelectorAll('.category-card');
+        const itemsContainer = document.getElementById('items-container');
+        
+        categoryCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Remove active class from all cards
+                categoryCards.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked card
+                this.classList.add('active');
+                
+                // Show items for selected category
+                showCategoryItems(category);
+                
+                // Scroll to items container
+                itemsContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Function to show category items
+        function showCategoryItems(category) {
+            const categoryData = menuData[category];
+            
+            if (!categoryData) return;
+            
+            let itemsHTML = `
+                <div class="subcategory">
+                    <h3 class="subcategory-title">${categoryData.title}</h3>
+                    <div class="items-grid">
+            `;
+            
+            categoryData.items.forEach(item => {
+                itemsHTML += `
+                    <div class="menu-item">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">${item.price}</div>
+                    </div>
+                `;
+            });
+            
+            itemsHTML += `
+                    </div>
+                </div>
+            `;
+            
+            itemsContainer.innerHTML = itemsHTML;
+            itemsContainer.classList.add('active');
+        }
+
+        // Add subtle animation to category cards on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1049,13 +1311,13 @@
             });
         }, observerOptions);
 
-        // Observe menu items
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(item);
+        // Observe category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
         });
     </script>
 </body>
-        </html>
+    </html>
